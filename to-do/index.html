@@ -1,0 +1,51 @@
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8" />
+    <title>AngularJS</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+
+<body>
+    <p class="p">todos</p>
+
+    <div ng-controller="MyController">
+        <form ng-submit="addItem()">
+            <div class="searchBox">
+                    <img class="imgCheckAll" ng-style="hidden" src="./assets/icons/down.svg" />
+                <input type="checkbox" class="checkedAll" ng-change="change(model)"  ng-model="model"/>
+                <input type="text" ng-model="newTodo" name="newTodo" placeholder="What needs to be done?" required/>
+            </div>
+        </form>
+
+        <ul>
+            <li ng-repeat="todo in todos|filter:myFilter track by $index">
+                <div id="checkBoder">   
+                    <input class="checkItem" type="checkbox" ng-model="model1" ng-checked="todo.done" ng-change="change1(model1,$index)"/>
+                </div>
+                <span ng-class="{'done':todo.done}">{{todo.title}}</span>
+                    <img class="removeItem" src="./assets/icons/removeItem.png">
+                    <button id="remove" ng-click="removeItem()">X</button>
+            </li>
+        </ul>
+
+        <div class="bottomHidden" ng-style="bottomHidden">
+            <div class="bottom">
+                <span>{{countItem}} item left</span>
+                <div class="buttonCenter">
+                    <button ng-click="all()" >All</button>
+                    <button ng-click="active()" >Active</button>
+                    <button ng-click="completed()">Completed</button>
+                </div>
+                <button id="clearCompleted" ng-style="styleClearCompleted" ng-click="clearCompleted()">Clear Completed</button>
+            </div>
+            <img id="bot" src="./assets/icons/bot.png">
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
