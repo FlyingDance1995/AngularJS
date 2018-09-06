@@ -1,0 +1,11 @@
+img{
+    width: 200px;
+}
+#myAdd{
+    opacity: 0;
+    margin-left: 560px;
+}
+#display{
+    opacity: 0;
+    margin-left: 560px; 
+}

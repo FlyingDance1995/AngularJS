@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+
+<body>
+    <div>
+        <input type="submit" onclick="myAdd()">
+    </div>
+    <div id="myAdd">
+        <p>Đang thêm</p>
+        <img src="./assets/img/loading.gif" />
+    </div>
+    <p id="display"></p>
+    
+    <script>
+        function myAdd() {
+            var display = document.getElementById("display");
+            var myAdd = document.getElementById("myAdd");
+
+            display.style.opacity = "0";
+            myAdd.style.opacity = "1";
+
+            setTimeout(function () {
+                var x = Math.floor((Math.random() * 10) + 1);
+
+                if (x % 2 == 0) {
+                    display.innerHTML = "Đã thêm";
+                    display.style.opacity = "1";
+                    myAdd.style.opacity = "0";
+                } else {
+                    display.innerHTML = "Không thể thêm";
+                    display.style.opacity = "1";
+                    myAdd.style.opacity = "0";
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+
+</html>

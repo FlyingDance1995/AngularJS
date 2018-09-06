@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+
+<body>
+    <form id="myform">
+    </form>
+    <p id="display"></p>
+    <script>
+        var str = ['js', 'css', 'html', 'c#', 'java', 'c++', 'pascal', 'ruby', 'python', 'nodejs'];
+        var list = "";
+        var i;
+        for (i = 0; i < str.length; i++) {
+            var div = document.createElement("div");
+            div.setAttribute("id", "div" + i);
+            div.setAttribute("class", "div");
+            var ull = document.getElementById("myform");
+
+            var cre = document.createElement("p");
+            cre.setAttribute("id", "p" + i);
+            cre.style.color = "white";
+            var node = document.createTextNode(str[i]);
+            cre.appendChild(node);
+            div.appendChild(cre);
+
+            var input = document.createElement("input");
+            input.setAttribute("class", "input");
+            input.setAttribute("type", "checkbox");
+            input.setAttribute("name", "checkfield" + i);
+            input.setAttribute("id", "input" + i);
+
+            input.addEventListener("change", function () {
+
+                var iiddd = this.getAttribute("id");
+                var res = iiddd.substring(5, 6);
+
+                if (this.checked) {
+                    var x = document.getElementById("p" + res).textContent;
+                    if (!list.includes(x)) {
+                        var div1 = document.getElementById("div" + res);
+                        div1.style.background = "red";
+                        setTimeout(function () {
+                            list += x;
+                            document.getElementById("display").innerHTML = list;
+                        }, 1000);
+                    }
+                } else {
+                    var y = document.getElementById("p" + res).textContent;
+                    var div1 = document.getElementById("div" + res);
+                    div1.style.background = "black";
+                    setTimeout(function () {
+                        document.getElementById("display").innerHTML = list.split(y)[0] + list.split(y)[1];
+                        list = list.split(y)[0] + list.split(y)[1];
+                    }, 1000);
+                }
+            });
+            
+            div.appendChild(input);
+            ull.appendChild(div);
+        }
+
+    </script>
+</body>
+
+</html>

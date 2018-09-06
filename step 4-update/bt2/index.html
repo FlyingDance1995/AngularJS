@@ -1,0 +1,130 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+
+<body>
+    <div class="AllList">
+        <div>
+            <h3>Post</h3>
+            <ul id="demo">
+            </ul>
+        </div>
+    </div>
+
+    <button type="button" id="myBtn">Add</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div>
+                Post :
+                <input id="text" type="text">
+                <br>
+                <input type="submit" value="Submit" onclick="mySubmit()">
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+            document.getElementById("text").value = "";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        var a = 14;
+        function mySubmit() {
+            a++;
+            var text = document.getElementById("text").value;
+
+            var div = document.createElement("div");
+            div.setAttribute("id", "div"+a);
+            div.setAttribute("class", "div");
+            var ull = document.getElementById("demo");
+
+            var create = document.createElement("li");
+            var node = document.createTextNode(text);
+            create.appendChild(node);
+            div.appendChild(create);
+
+            var button = document.createElement("button");
+            button.setAttribute("id", "button"+a);
+            button.setAttribute("class", "button");
+            var node1 = document.createTextNode("Delete");
+            button.appendChild(node1);
+            div.appendChild(button);
+
+            ull.appendChild(div);
+
+            button.addEventListener("click", function () {
+                ull.removeChild(div);
+            });
+        }
+        fetch('http://jsonplaceholder.typicode.com/posts')
+            .then(
+                function (response) {
+                    if (response.status !== 200) {
+                        console.log('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+                    response.json().then(function (data) {
+                        var i;
+                        for (i = 0; i < 15; i++) {
+                            var text1 = JSON.stringify(data[i].title);
+                            var div = document.createElement("div");
+                            div.setAttribute("id", "div" + i);
+                            div.setAttribute("class", "div");
+                            var ull = document.getElementById("demo");
+
+
+                            var cre = document.createElement("li");
+                            cre.setAttribute("id", "li" + i);
+                            var node = document.createTextNode(text1);
+                            cre.appendChild(node);
+                            div.appendChild(cre);
+
+                            var button = document.createElement("button");
+                            button.setAttribute("id", "button" + i);
+                            button.setAttribute("class", "button");
+                            var node1 = document.createTextNode("Delete");
+                            button.appendChild(node1);
+                            div.appendChild(button);
+
+                            ull.appendChild(div);
+                        }
+                        for (let index = 0; index < 15; index++) {
+                            var sdfdf = document.getElementById("button" + index);
+                            sdfdf.addEventListener("click", function () {
+                                var ddivv = document.getElementById("div" + index);
+                                var ulllll = document.getElementById("demo");
+                                ulllll.removeChild(ddivv);
+                            });
+
+                        }
+                    });
+                }
+            )
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
+    </script>
+</body>
+
+</html>

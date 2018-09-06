@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Index</title>
+</head>
+
+<body>
+    <div>
+        <input id="myInput" type="text" placeholder="Input Post" onkeyup="myFetch()">
+    </div>
+    <div id="content"></div>
+    <script>
+        var settt = null;
+        function myFetch() {
+
+            clearTimeout(settt);
+            document.getElementById("content").innerHTML = "";
+            settt = setTimeout(function () {
+                fetch('http://jsonplaceholder.typicode.com/posts')
+                    .then(
+                        function (response) {
+                            if (response.status !== 200) {
+                                document.write('Looks like there was a problem. Status Code: ' +
+                                    response.status);
+                                return;
+                            }
+                            response.json().then(function (data) {
+
+                                var keywork = document.getElementById("myInput").value;
+
+                                var i;
+                                for (i = 0; i < 30; i++) {
+
+                                    var str = (data[i].title);
+                                    var n = str.search(keywork);
+
+                                    if (keywork == "") {
+                                        document.getElementById("content").innerHTML = "";
+                                    } else {
+                                        if (n >= 0) {
+                                            var div = document.createElement("div");
+                                            div.setAttribute("id", "div" + i);
+
+                                            var p = document.createElement("p");
+                                            p.setAttribute("id", "p" + i);
+                                            var node = document.createTextNode(" + " + data[i].title);
+                                            p.appendChild(node);
+                                            div.appendChild(p);
+
+                                            var a = document.getElementById("content");
+                                            a.appendChild(div);
+                                        }
+
+                                    }
+                                }
+                            });
+                        }
+                    )
+                    .catch(function (err) {
+                        document.write('Fetch Error : ', err);
+                    });
+            }, 300);
+        }
+    </script>
+
+</body>
+
+</html>

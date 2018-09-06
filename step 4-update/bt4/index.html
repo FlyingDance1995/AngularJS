@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Index</title>
+</head>
+
+<body>
+    Ngày:
+    <input style="width: 155px;" id="day" type="number" name="date" required />
+    <span id="myDay"></span>
+    <br> Tháng:
+    <input style="width: 150px;" id="month" type="number" name="month" required />
+    <span id="myMonth"></span>
+    <br> Năm:
+    <input style="width: 160px;" id="year" type="number" name="year" required />
+    <span id="myYear"></span>
+    <br>
+
+    <input type="submit" value="Submit" onclick="myFunction()">
+    <p>Timestamp:
+        <span id="demo"></span>
+    </p>
+
+    <script>
+        function myFunction() {
+            var day = document.getElementById("day").value;
+            var month = document.getElementById("month").value;
+            var year = document.getElementById("year").value;
+
+            if (year >= 1970 && year <= 2018) {
+                document.getElementById("myYear").innerHTML = "";
+                if (month < 1 || month > 12) {
+                    document.getElementById("myMonth").innerHTML = " Lỗi !!! xin nhập lại";
+                    document.getElementById("demo").innerHTML = " Eurro";
+                } else {
+                    if (month == 2) {
+                        document.getElementById("myMonth").innerHTML = "";
+                        if (day <= 29 && day > 0) {
+                            if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+                                document.getElementById("myDay").innerHTML = "";
+                                var date = year + "-" + month + "-" + day;
+
+                                var dateconvert = new Date(date);
+
+                                var timestamp = Math.floor(dateconvert / 1000);
+
+                                document.getElementById("demo").innerHTML = timestamp + " milisecond";
+                            }
+                            else {
+                                if (day == 29) {
+                                    document.getElementById("myDay").innerHTML = " Lỗi !!! xin nhập lại";
+                                    document.getElementById("myYear").innerHTML = " Nam nay khong phai la nam nhuan ! ";
+                                    document.getElementById("demo").innerHTML = " Eurro";
+                                } else {
+                                    document.getElementById("myDay").innerHTML = "";
+                                    var date = year + "-" + month + "-" + day;
+
+                                    var dateconvert = new Date(date);
+
+                                    var timestamp = Math.floor(dateconvert / 1000);
+
+                                    document.getElementById("demo").innerHTML = timestamp + " milisecond";
+                                }
+                            }
+                        }
+
+                        else {
+                            document.getElementById("myDay").innerHTML = " Lỗi !!! xin nhập lại";
+                            document.getElementById("demo").innerHTML = " Eurro";
+                        }
+                    } else
+
+                        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
+                            document.getElementById("myMonth").innerHTML = "";
+                            if (day > 0 && day <= 31) {
+                                document.getElementById("myDay").innerHTML = "";
+                                var date = year + "-" + month + "-" + day;
+
+                                var dateconvert = new Date(date);
+
+                                var timestamp = Math.floor(dateconvert / 1000);
+
+                                document.getElementById("demo").innerHTML = timestamp + " milisecond";
+                            }
+                            else {
+                                document.getElementById("myDay").innerHTML = " Lỗi !!! xin nhập lại";
+                                document.getElementById("demo").innerHTML = " Eurro";
+                            }
+                        } else
+
+                            if (month == 4 || month == 6 || month == 9 || month == 11) {
+                                document.getElementById("myMonth").innerHTML = "";
+                                if (day > 0 && day <= 30) {
+                                    document.getElementById("myDay").innerHTML = "";
+                                    var date = year + "-" + month + "-" + day;
+
+                                    var dateconvert = new Date(date);
+
+                                    var timestamp = Math.floor(dateconvert / 1000);
+
+                                    document.getElementById("demo").innerHTML = timestamp + " milisecond";
+                                }
+                                else {
+                                    document.getElementById("myDay").innerHTML = " Lỗi !!! xin nhập lại";
+                                    document.getElementById("demo").innerHTML = " Eurro";
+                                }
+                            }
+                }
+
+            } else {
+                document.getElementById("myYear").innerHTML = " Nam nhap vao khong hop le!";
+                document.getElementById("demo").innerHTML = " Eurro";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<html>
+    <head>    
+          <title>Index</title>
+    </head>
+   
+    <body>
+        <p id="demo"></p>
+        <script>
+            var str = window.location.href;
+            var pos = str.search("#/");
+            if(pos > 0){
+                var res = str.substring(pos+2, str.length);
+                document.getElementById("demo").innerHTML = res;
+            }
+            else{
+                document.getElementById("demo").innerHTML = "O_O";
+            }
+        </script>
+    </body>
+
+</html>

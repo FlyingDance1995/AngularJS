@@ -1,0 +1,24 @@
+.div{
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    border: 1px solid black;
+    background: black;
+    width: 80px;
+    height: 30px;
+}
+p{
+    margin: 0px;
+}
+.input{
+    width: 80px;
+    height: 30px;
+    opacity: 0;
+}
+body{
+    display: flex;
+    align-items: center;
+}
+#display{
+    margin-left: 30px;
+}
