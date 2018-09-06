@@ -57,9 +57,8 @@ li:hover{
     opacity: 0.8;
 }
 .checkItem{
-    border: none;
-    margin-left: 4px;
-    margin-top: 4px;
+    margin-left: -1px;
+    margin-top: -2px;
     width: 24px;
     height: 24px;
 }
@@ -68,16 +67,16 @@ li:hover{
     margin-left: 19px;
     width: 38px;
     height: 32px;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 50%;
 }
 .checkItem:checked::before{
     position: absolute;
-    content: url("./assets/icons/check.PNG");
+    content: url("./assets/icons/check.jpg");
     border: solid 1px white;
 }
 .checkItem::before{
-    content: url("./assets/icons/unCheck.PNG"); 
+    content: url("./assets/icons/unCheck.jpg"); 
     position: absolute;
     border: solid 1px white;  
 }
@@ -112,6 +111,7 @@ li>span{
 }
 .bottom{
     font-size: 16px;
+    color: #777777;
     display: flex;
     align-items: center; 
     margin-left: 540px;
@@ -130,6 +130,7 @@ li>span{
     margin-left: 70px;
 }
 .buttonCenter>button{
+    color: #777777;
     border: 1px solid #fefefe;
     background-color: #fefefe;
     font-size: 15px;
@@ -141,6 +142,7 @@ li>span{
 }
 
 #clearCompleted{
+    color: #777777;
     opacity: 0;
     margin-left: 45px;
     border: 1px solid #fefefe;
