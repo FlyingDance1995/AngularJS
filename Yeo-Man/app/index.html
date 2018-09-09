@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="yeoManApp" ng-controller="MainCtrl">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <p class="p">todos</p>
+
+    <div>
+        <form ng-submit="addItem()">
+            <div class="searchBox">
+                    <img class="imgCheckAll" ng-style="hidden" src="./images/down.svg" />
+                <input type="checkbox" class="checkedAll" ng-change="change(model)"  ng-model="model"/>
+                <input type="text" ng-model="newTodo" name="newTodo" placeholder="What needs to be done?" required/>
+            </div>
+        </form>
+
+        <ul>
+            <li ng-repeat="todo in todos|filter:myFilter track by $index">
+                <div id="checkBoder">   
+                    <input class="checkItem" type="checkbox" ng-model="model1" ng-checked="todo.done" ng-change="change1(model1,$index)"/>
+                </div>
+                <span ng-class="{'done':todo.done}">{{todo.title}}</span>
+                    <img class="removeItem" src="./images/removeItem.PNG">
+                    <button id="remove" ng-click="removeItem()">X</button>
+            </li>
+        </ul>
+
+        <div class="bottomHidden" ng-style="bottomHidden">
+            <div class="bottom">
+                <span>{{countItem}} item left</span>
+                <div class="buttonCenter">
+                    <button ng-click="all()" >All</button>
+                    <button ng-click="active()" >Active</button>
+                    <button ng-click="completed()">Completed</button>
+                </div>
+                <button id="clearCompleted" ng-style="styleClearCompleted" ng-click="clearCompleted()">Clear Completed</button>
+            </div>
+            <img id="bot" src="./images/bot.png">
+        </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
